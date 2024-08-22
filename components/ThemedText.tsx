@@ -1,5 +1,4 @@
 import { Text, type TextProps, StyleSheet } from 'react-native';
-
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 export type ThemedTextProps = TextProps & {
@@ -20,12 +19,13 @@ export function ThemedText({
   return (
     <Text
       style={[
+        styles.textBase,
         { color },
-        type === 'default' ? styles.default : undefined,
-        type === 'title' ? styles.title : undefined,
-        type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
-        type === 'subtitle' ? styles.subtitle : undefined,
-        type === 'link' ? styles.link : undefined,
+        type === 'default' && styles.default,
+        type === 'title' && styles.title,
+        type === 'defaultSemiBold' && styles.defaultSemiBold,
+        type === 'subtitle' && styles.subtitle,
+        type === 'link' && styles.link,
         style,
       ]}
       {...rest}
@@ -34,27 +34,35 @@ export function ThemedText({
 }
 
 const styles = StyleSheet.create({
+  textBase: {
+    fontFamily: 'System', // Ensures a consistent base font
+  },
   default: {
     fontSize: 16,
     lineHeight: 24,
+    color: '#FF69B4', // Pink color
   },
   defaultSemiBold: {
     fontSize: 16,
     lineHeight: 24,
     fontWeight: '600',
+    color: '#FF69B4', // Pink color
   },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    lineHeight: 32,
+    lineHeight: 40,
+    color: '#FF1493', // Deeper pink color for titles
   },
   subtitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: '600',
+    lineHeight: 28,
+    color: '#FF69B4', // Pink color
   },
   link: {
-    lineHeight: 30,
     fontSize: 16,
-    color: '#0a7ea4',
+    color: '#FF4500', // Link color (coral for contrast)
+    textDecorationLine: 'underline',
   },
 });

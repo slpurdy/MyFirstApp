@@ -1,9 +1,10 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Dimensions } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+
+const { width } = Dimensions.get('window'); // Get screen width
 
 export default function HomeScreen() {
   return (
@@ -28,7 +29,6 @@ export default function HomeScreen() {
         <ThemedText style={styles.aboutMeText}>
           Hi! I'm Shakyra Purdy, and while I may enjoy a good tech pun now and then, my true passion lies in building amazing software solutions. Based in the vibrant city of Memphis, TN, I bring a diverse background in customer service, market research, and leadership to the world of software development. My mission? To deliver innovative, user-friendly applications that don't just solve problems—they enhance lives.
         </ThemedText>
-  
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -37,7 +37,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   aboutMeContainer: {
     padding: 20,
-    backgroundColor: '#FFC0CB',
+    backgroundColor: '#FFC0CB', // Light pink background
     borderRadius: 16,
     marginTop: 16,
     alignItems: 'center',
@@ -69,10 +69,9 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+    width: width, // Stretch across the screen
+    height: width * 0.4, // Maintain aspect ratio (adjust 0.4 to fit your logo's aspect ratio)
+    resizeMode: 'contain', // Maintain aspect ratio and scale image to fit
+    alignSelf: 'center', // Center the image horizontally
   },
 });
